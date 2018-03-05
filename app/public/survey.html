@@ -27,8 +27,8 @@
     <div class="container">
         <h2>Question 1</h2>
         <h4>I feel comfortable around people.</h4>
-        <select class = "select-option" id ="question1">
-            <option value =""></option>
+        <select class="select-option" id="q1">
+            <option value=""></option>
             <option value="1">1 (Strongly Disagree)</option>
             <option value="2">2</option>
             <option value="3">3</option>
@@ -38,8 +38,8 @@
 
         <h2>Question 2</h2>
         <h4>I complete tasks successfully.</h4>
-        <select class = "select-option" id ="question2">
-            <option value =""></option>
+        <select class="select-option" id="q2">
+            <option value=""></option>
             <option value="1">1 (Strongly Disagree)</option>
             <option value="2">2</option>
             <option value="3">3</option>
@@ -49,8 +49,8 @@
 
         <h2>Question 3</h2>
         <h4>I go straight for the goal.</h4>
-        <select class = "select-option" id ="question3">
-            <option value =""></option>
+        <select class="select-option" id="q3">
+            <option value=""></option>
             <option value="1">1 (Strongly Disagree)</option>
             <option value="2">2</option>
             <option value="3">3</option>
@@ -60,8 +60,8 @@
 
         <h2>Question 4</h2>
         <h4>I don't know why I do some of the things I do.</h4>
-        <select class = "select-option" id ="question4">
-            <option value =""></option>
+        <select class="select-option" id="q4">
+            <option value=""></option>
             <option value="1">1 (Strongly Disagree)</option>
             <option value="2">2</option>
             <option value="3">3</option>
@@ -71,8 +71,8 @@
 
         <h2>Question 5</h2>
         <h4>I talk to a lot of different people at parties.</h4>
-        <select class = "select-option" id ="question5">
-            <option value =""></option>
+        <select class="select-option" id="q5">
+            <option value=""></option>
             <option value="1">1 (Strongly Disagree)</option>
             <option value="2">2</option>
             <option value="3">3</option>
@@ -82,8 +82,8 @@
 
         <h2>Question 6</h2>
         <h4>I seek adventure.</h4>
-        <select class = "select-option" id ="question6">
-            <option value =""></option>
+        <select class="select-option" id="q6">
+            <option value=""></option>
             <option value="1">1 (Strongly Disagree)</option>
             <option value="2">2</option>
             <option value="3">3</option>
@@ -93,8 +93,8 @@
 
         <h2>Question 7</h2>
         <h4>I like music.</h4>
-        <select class = "select-option" id ="question7">
-            <option value =""></option>
+        <select class="select-option" id="q7">
+            <option value=""></option>
             <option value="1">1 (Strongly Disagree)</option>
             <option value="2">2</option>
             <option value="3">3</option>
@@ -104,8 +104,8 @@
 
         <h2>Question 8</h2>
         <h4>I believe that others have good intentions.</h4>
-        <select class = "select-option" id ="question8">
-            <option value =""></option>
+        <select class="select-option" id="q8">
+            <option value=""></option>
             <option value="1">1 (Strongly Disagree)</option>
             <option value="2">2</option>
             <option value="3">3</option>
@@ -115,8 +115,8 @@
 
         <h2>Question 9</h2>
         <h4>I love to eat.</h4>
-        <select class = "select-option" id ="question9">
-            <option value =""></option>
+        <select class="select-option" id="q9">
+            <option value=""></option>
             <option value="1">1 (Strongly Disagree)</option>
             <option value="2">2</option>
             <option value="3">3</option>
@@ -126,19 +126,87 @@
 
         <h2>Question 10</h2>
         <h4>I take control of things.</h4>
-        <select class = "select-option" id ="question10">
-            <option value =""></option>
+        <select class="select-option" id="q10">
+            <option value=""></option>
             <option value="1">1 (Strongly Disagree)</option>
             <option value="2">2</option>
             <option value="3">3</option>
             <option value="4">4</option>
             <option value="5">5 (Strongly Agree)</option>
         </select>
-    <hr>
+        <hr>
 
-    <button type="button" class="btn btn-primary btn-lg btn-block" id="submit">Submit Survey</button>
-
+        <button type="button" class="btn btn-primary btn-lg btn-block" id="submit">Submit Survey</button>
     </div>
+    <div id="resultsModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h2 class="modal-title">
+                        <strong>Your Best of Friends</strong>
+                    </h2>
+                </div>
+                <div class="modal-body">
+                    <h2 id="matchName"></h2>
+                    <img id="matchImg" class="img-responsive" src="" alt="">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        $('#submit').on('click', function () {
+           event.preventDefault();
+            function validateForm() {
+                var isValid = true;
+                $('.form-control').each(function () {
+                    if ($(this).val() === '')
+                        isValid = false;
+                });
+                $('.select-option').each(function () {
+                    if ($(this).val() === "")
+                        isValid = false
+                })
+                return isValid;
+            }
+           
+            if (validateForm() == true) {
+              
+                var userData = {
+                    name: $('#nameInput').val.trim(),
+                    photo: $('#photoInput').val.trim(),
+                    scores: [$('#q1').val(),
+                        $('#q2').val(),
+                        $('#q3').val(),
+                        $('#q4').val(),
+                        $('#q5').val(),
+                        $('#q6').val(),
+                        $('#q7').val(),
+                        $('#q8').val(),
+                        $('#q9').val(),
+                        $('#q10').val(),
+                    ]
+                };
+                //AJAX post data
+                $.post(currentURL + "/api/friends", userData, function (data) {
+
+                    $('#matchName').text(data.name);
+                    $('#matchImg').attr("src", data.photo);
+                    $('#resultsModal').modal('toggle');
+                });
+            } else {
+                alert('Please fill out all fields before submitting!');
+            }
+            return false;
+        });
+    </script>
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
