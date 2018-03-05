@@ -1,19 +1,19 @@
-const friends= [
+const friends = [
 
 {
     "name": "Micheal Jordan",
     "photo": "https://cdn.nba.net/nba-drupal-prod/styles/landscape/http/i2.cdn.turner.com/nba/nba/dam/assets/130828123801-michael-jordan-iso-1998-all-star-game.video-player.jpg?itok=FGvQfRCL",
     "scores": [
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0
+        3,
+        4,
+        5,
+        4,
+        5,
+        5,
+        4,
+        3,
+        3,
+        2
     ]
 },
 {
