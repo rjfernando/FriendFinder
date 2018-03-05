@@ -27,8 +27,8 @@ module.exports = function(app) {
             for (var j = 0; j < friends[i].scores[j]; j++){
                 totalDifference += Math.abs(parseInt(userScores[j]) - parseInt(friends[i].scores[j]));
                 //finds the best compatibility/match
-                if (totalDifference <= matchFriend.friendDiffersence){
-                    bestmatch.name = friends[i].name;
+                if (totalDifference <= bestMatch.friendDifference){
+                    bestMatch.name = friends[i].name;
                     bestMatch.photo = friends[i].photo;
                     bestMatch.friendDifference = totalDifference;
                 }
@@ -36,7 +36,7 @@ module.exports = function(app) {
         }
         //pushes new friend to the API
         friends.push(userData);
-        res.json(bestFriend);
+        res.json(bestMatch);
     });
 
 }
