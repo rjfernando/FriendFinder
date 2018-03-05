@@ -7,7 +7,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" crossorigin="anonymous">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/jquery.js"></script>
+    <!--chosen-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.5.1/chosen.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.5.1/chosen.jquery.min.js"></script>
     <title>Friend Finder</title>
+
 </head>
 
 <body>
@@ -138,10 +144,10 @@
 
         <button type="button" class="btn btn-primary btn-lg btn-block" id="submit">Submit Survey</button>
     </div>
+    
+    <!---modal section-->
     <div id="resultsModal" class="modal fade" role="dialog">
-        <div class="modal-dialog">
-
-            <!-- Modal content-->
+        <div class="modal-dialog" role ="document"> 
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -161,7 +167,7 @@
         </div>
     </div>
 
-    <script type="text/javascript">
+    <script type= 'text/javascript'>
         $('#submit').on('click', function () {
            event.preventDefault();
             function validateForm() {
@@ -180,8 +186,8 @@
             if (validateForm() == true) {
               
                 var userData = {
-                    name: $('#nameInput').val.trim(),
-                    photo: $('#photoInput').val.trim(),
+                    name: $('#nameInput').val(),
+                    photo: $('#photoInput').val(),
                     scores: [$('#q1').val(),
                         $('#q2').val(),
                         $('#q3').val(),
@@ -194,9 +200,10 @@
                         $('#q10').val(),
                     ]
                 };
-                //AJAX post data
+                var currentURL = window.location.origin;
+                //AJAX posting the data provide to the friends API
                 $.post(currentURL + "/api/friends", userData, function (data) {
-
+                    //to display the results from the AJAX post
                     $('#matchName').text(data.name);
                     $('#matchImg').attr("src", data.photo);
                     $('#resultsModal').modal('toggle');
