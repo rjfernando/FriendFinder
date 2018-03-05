@@ -6,7 +6,7 @@ const app = express();
 var PORT = process.env.PORT || 3000;
 
 //the express app to handle data parsing
-app.use(bodyparser.urlencoded({ extended: false }));
+app.use(bodyparser.urlencoded({ extended: true }));
 app.use(bodyparser.json());
 
 //routes for app
