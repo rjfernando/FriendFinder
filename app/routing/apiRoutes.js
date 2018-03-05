@@ -8,17 +8,17 @@ module.exports = function(app) {
     });
     //POST route and will handle all incoming survey results plus the compatibility logic
     app.post('/api/friends', function(req, res){
-       var bestMatch = {
-           name: "",
-           photo: "",
-           friendDifference: 1000
-       };
+       const bestMatch = {
+                name: "",
+                photo: "",
+                friendDifference: 10000
+        };
 
-       var userData = req.body;
-       var userScores = userData.scores;
+       const userData = req.body;
+       const userScores = userData.scores;
+       
        var totalDifference = 0;
 
-       var matchArray = [];
        //loops through friends object to compare
         for (var i = 0; i < friends.length; i++){
            
